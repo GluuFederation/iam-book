@@ -10,7 +10,7 @@ var client_id = settings.client_id;
 var client_secret = settings.client_secret;
 var port = settings.port;
 var redirectURI = settings.redirectURI;
-
+var urlShortenScope = "https://www.googleapis.com/auth/urlshortener";
 
 var oauth2Client = new OAuth2(
     client_id,
@@ -18,7 +18,7 @@ var oauth2Client = new OAuth2(
     redirectURI
 );
 
-app.use(bodyParser.urlencoded({
+app.use(bodyParser.urlencoded({There
     extended: true
 }));
 app.set('views', path.join(__dirname, 'views'));
@@ -37,36 +37,30 @@ app.get('/processredirect', function(req, res) {
 });
 
 app.get('/urlshorten', function(req, res) {
-
     console.log('Req ' + req.getHeader("access_token"));
     res.json("recieved Data" + req.getHeader("access_token"));
 })
 
-
 app.post('/requestoAuth', function(req, res) {
-    var scopes = [
-        'https://www.googleapis.com/auth/urlshortener'
-    ];
+    var scopes = [urlShortenScope];5
     var url = oauth2Client.generateAuthUrl({
         access_type: 'offline',
         scope: scopes
     });
-
-    console.log('Visit the url: ', url);
+    console.log('Redirect to : ', url);
     res.redirect(url);
-
 });
 
 app.post('/shortenURL', function(req, res) {
-
-    console.log("hello world");
+    console.log("Creating client");
     var oauth2Client1 = new OAuth2(
         client_id,
         client_secret,
-        'http://lanetteam.com:8556/processredirect'
+        redirectURI
     );
 
     oauth2Client.getToken(req.body.token, function(err, tokens) {
+        console.log("Obtaining token");
         if (!err) {
             oauth2Client.setCredentials(tokens);
             var urlshortener = google.urlshortener({

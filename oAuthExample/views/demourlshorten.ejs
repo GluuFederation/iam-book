@@ -1,47 +1,43 @@
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-<script>
-$(document).ready(function(){
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous">
+    </script>
+    <script>
+        $(document).ready(function(){
 
-   
-    
-    $('#submit').click(function(){
+            $('#submit').click(function(){
 
-        if( $("#url").val().trim()==""){
-            alert("URL is required");
-            return false;
-        }
+                if( $("#url").val().trim()==""){
+                    alert("URL is required");
+                    return false;
+                }
 
-        var params =  { "url" : $("#url").val() ,"token" : "<%=access_token%>" };
-     
-        $.ajax({
-            url: '/shortenURL',
-            data: params,
-            error: function(err) {
-                alert('Error');
-            },
-            dataType: 'json',
-            success: function(data) {
-             
-                $("#shortURL").html(data.data.id);
-            },
-            type: 'POST'
+                var params =  { "url" : $("#url").val() ,"token" : "<%=access_token%>" };
+
+                $.ajax({
+                    url: '/shortenURL',
+                    data: params,
+                    error: function(err) {
+                        alert('Error');
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+
+                        $("#shortURL").html(data.data.id);
+                    },
+                    type: 'POST'
+                });
+            });
         });
-    });
-});
-
-</script>
+    </script>
 </head>
+
 <body>
-
-<span> Enter URL to shorten : </span> 
-<input type ='text' name='url' id='url' ></input> <br/>
-<button type = 'submit' value ='submit' id='submit'>Submit</button>
-<div id='shortURL'></div>
-
-
-
-
+    <span> Enter URL to shorten : </span>
+    <input type ='text' name='url' id='url' ></input> <br/>
+    <button type = 'submit' value ='submit' id='submit'>Submit</button>
+    <div id='shortURL'></div>
 </body>
 </html>
