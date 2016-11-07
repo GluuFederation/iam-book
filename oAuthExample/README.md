@@ -4,10 +4,12 @@
 * Clone the project 
 * Open Settings.js and change the configuration to your Project
 ```
-exports.client_id = /* Client ID from Google Console Project */
-exports.client_secret = /* Client ID from Google Console Project */
-exports.port = /* PORT  */
-exports.redirectURI = /* REDIRECT URI  */
+exports.client_id =  /* Client ID from Google Console Project */;
+exports.client_secret =  /* Client Secret from Google Console Project */;
+exports.port = /**/;
+exports.redirectURIPath = /**/;
+exports.baseURI = /*Host*/
+
 ```
 * Open command line tool navigate to your folder path
 * Install node modules
