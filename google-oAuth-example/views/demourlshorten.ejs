@@ -1,0 +1,80 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous">
+    </script>
+    <script>
+        var params = {};
+        var urlShortenGoogleAPIURL = "https://www.googleapis.com/urlshortener/v1/url";
+
+        $(document).ready(function(){
+
+            /* Parse the URL to fetch the access token*/
+            var  queryString = location.hash.substring(1),
+            regex = /([^&=]+)=([^&]*)/g, m;
+            while (m = regex.exec(queryString)) {
+                params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+            }
+          
+           appendLogs("Recieved following information from Google Server = " + JSON.stringify(params));
+      
+           /*  Submit button click which will call the Google URL shortner API */
+            $('#submit').click(function(){
+
+                // Validation for empty URL
+                if( $("#url").val().trim()==""){
+                    alert("URL is required");
+                    return false;
+                }
+                
+                var body =  {"longUrl": $("#url").val()}; /* Parameters for URL Shorten API */
+                
+                appendLogs("Calling urlshortener API \n URL : https://www.googleapis.com/urlshortener/v1/url?access_token="+ params["access_token"] + "\n parameter : " + body);
+                 
+                $.ajax({
+                    url: urlShortenGoogleAPIURL +"?access_token="+params["access_token"],
+                    data: JSON.stringify(body),
+                    contentType: "application/json; charset=utf-8",
+                    dataType:"json",
+                    error: function(err) {
+                        appendLogs("Error Recieved from URL Shorten API = " + JSON.stringify(err));
+                        alert('Error');
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        $("#shortURL").html("Shorten URL : " + data.id);
+                        appendLogs("Data Recieved from URL Shorten API = " + JSON.stringify(data));
+                    },
+                    type: 'POST'
+                });
+
+                appendLogs("Called URLShorten API. Waiting for Response ..... ");
+                $("#shortURL").html("Called URLShorten API. Waiting for Response ..... ");
+            });
+        });
+
+        function appendLogs(str)
+        {
+            $("#ullogs").append( "<li>" + str + "</li>");
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="form" style="width:30%;float:left">
+        <span> Enter URL to shorten : </span>
+        <input type ='text' name='url' id='url' ></input> <br/>
+        <button type = 'submit' value ='submit' id='submit'>Submit</button>
+        <div id='shortURL'></div>
+    </div>
+    
+    <div id='logs' style="width:70%;float:left;background-color:#f2f2f2;height:100% ">
+        Logs <BR/>
+        <ul id="ullogs">
+        <li>Called oAuth URL = <%=oAuthurl%></li>
+        </ul>
+    </div>
+</body>
+</html>
