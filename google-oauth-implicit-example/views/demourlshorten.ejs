@@ -17,7 +17,7 @@
                 params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
             }
           
-           appendLogs("Recieved following information from Google Server = " + JSON.stringify(params));
+           appendLogs("Received following information from Google Server = " + JSON.stringify(params));
       
            /*  Submit button click which will call the Google URL shortner API */
             $('#submit').click(function(){
@@ -38,13 +38,13 @@
                     contentType: "application/json; charset=utf-8",
                     dataType:"json",
                     error: function(err) {
-                        appendLogs("Error Recieved from URL Shorten API = " + JSON.stringify(err));
+                        appendLogs("Error Received from URL Shorten API = " + JSON.stringify(err));
                         alert('Error');
                     },
                     dataType: 'json',
                     success: function(data) {
                         $("#shortURL").html("Shorten URL : " + data.id);
-                        appendLogs("Data Recieved from URL Shorten API = " + JSON.stringify(data));
+                        appendLogs("Data Received from URL Shorten API = " + JSON.stringify(data));
                     },
                     type: 'POST'
                 });

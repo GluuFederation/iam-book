@@ -1,7 +1,7 @@
 title Sequence Diagram
 
-browser->home: 
-home-> browser : Display button to login with google 
+browser->index.ejs:
+authRequest-> browser : Display button to login with google
 browser-> redirect-to-google: Click on button
 redirect-to-google->browser: redirect to google's oAuth server
 browser->google-oAuth-server :
