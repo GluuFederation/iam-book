@@ -1,7 +1,7 @@
 {
   "name": "google-oauth-implicit-example",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sample application to show OAuth2 implict flow.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +12,7 @@
     "body-parser": "^1.15.2",
     "ejs": "^2.5.2",
     "express": "^4.14.0",
-    "path": "^0.12.7"
-  
+    "path": "^0.12.7",
+    "request": "^2.78.0"
   }
 }

@@ -1,16 +1,17 @@
 // Setup variables
 var bodyParser = require('body-parser');
 var express = require('express');
-var app = express();
-var path = require('path');
+var request = require('request');
 var settings = require("./settings");
+var path = require('path');
+var app = express();
+
 var client_id = settings.client_id;
 var client_secret = settings.client_secret;
 var port = settings.port;
 var host = settings.host;
 var redirectURIPath =  settings.redirectURIPath;
 var urlShortenScope = "https://www.googleapis.com/auth/urlshortener";
-var request = require('request');
 var redirectURI = settings.redirectURI;
 var url = 'https://accounts.google.com/o/oauth2/v2/auth?' +
                'state=urlshortenapicall&' + // Prevent unsolicited callbacks.
