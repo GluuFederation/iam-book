@@ -1,5 +1,5 @@
 {
-  "name": "google-oauth-example",
+  "name": "google-oauth-implicit-example",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",

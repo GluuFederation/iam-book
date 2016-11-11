@@ -11,20 +11,7 @@ var host = settings.host;
 var redirectURIPath =  settings.redirectURIPath;
 var urlShortenScope = "https://www.googleapis.com/auth/urlshortener";
 var request = require('request');
-
-// Set the Redirect URI
-var redirectURI = settings.explicitRedirectURI;
-if (redirectURI == ""){
-    var baseURI = "https://";
-    if (port == "443") {
-        baseURI = baseURI + host;
-    } else {
-        baseURI = baseURI + host + ':' + port;
-    }
-    redirectURI = baseURI + settings.redirectURIPath;
-}
-
-var scopes = [urlShortenScope];
+var redirectURI = settings.redirectURI;
 var url = 'https://accounts.google.com/o/oauth2/v2/auth?' +
                'state=urlshortenapicall&' + // Prevent unsolicited callbacks.
                'scope='+urlShortenScope+'&'+ // Scope corresponds to access requested.
@@ -45,21 +32,20 @@ app.get('/', function(req, res) {
     res.render('index'); // Renders views/index.ejs page
 })
 
-// Call Google's authorization endpoint
+// Redirect to Google's authorization endpoint
 app.post('/authRequest', function(req, res) {
     console.log('Redirect to : ', url);
     res.redirect(url);
 });
 
-// Call the urlshortener API with the token
+// Callback from the Google urlshortener API
 app.get(redirectURIPath, function(req, res) {
     res.render('demourlshorten', {
         oAuthurl:url
     });
-    // Render views/demourlshorten.ejs in the view
-    // required to get the access token to call the google API
 });
 
+// Start the server
 app.set('port', process.env.PORT || port);
 var server = app.listen(app.get('port'), function() {
     var port = server.address().port

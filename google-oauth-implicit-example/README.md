@@ -1,17 +1,14 @@
-# Google oAuth Example
-### How to run the Server
-##### Steps :
+# Google OAuth Example
+## How to run the Server
+### Steps :
 * Clone the project 
 * Open Settings.js and change the configuration to your Project
 ```
-exports.client_id =  /* Client ID from Google Console Project */
-exports.client_secret =  /* Client Secret from Google Console Project */
-exports.port = /*Port on which this node server will run*/
-exports.host = /*Internet accessible hostname*/
-exports.baseURI = /*Host*/
-exports.redirectURIPath = /* The redirect endpoint, for example, /cb */
-exports.explicitRedirectURI = /* Leave blank unless you map URI from router */
-
+exports.client_id =  /* Client ID from Google Console Project */;
+exports.client_secret =  /* Client Secret from Google Console Project */;
+exports.port = /*Port on which this node server will run*/;
+exports.redirectURIPath = /* The redirect endpoint, for example, /cb */;
+exports.redirectURI = /* The URL that Google will use to send back a token */;
 ```
 * Open command line tool navigate to your folder path
 * Install node modules
@@ -23,7 +20,7 @@ npm install
 node app
 ```
 
-* oAuth Client URL generation and field explaination
+* OAuth Client URL generation and field explaination
 ```
 var url = 'https://accounts.google.com/o/oauth2/v2/auth?' +
                'state=urlshortenapicall&' + // Prevent unsolicited callbacks.
@@ -37,7 +34,7 @@ var url = 'https://accounts.google.com/o/oauth2/v2/auth?' +
 See the sequence diagram below to get a better picture of the flow of 
 this application.
 
-![Demo Sequence Diagram](https://raw.githubusercontent.com/GluuFederation/iam-book/master/google-oAuth-example/sequence%20diagram/Sequence%20Diagram%20.png)
+![Demo Sequence Diagram](https://raw.githubusercontent.com/GluuFederation/iam-book/master/google-OAuth-example/sequence%20diagram/Sequence%20Diagram%20.png)
 
 
 
