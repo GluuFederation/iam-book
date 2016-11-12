@@ -1,17 +1,17 @@
 title Google URL Shortener Example
 
 Person->Browser:
-Browser->RS: Request website
-RS->Browser: Return index.ejs
-Browser->RS: Click on "Login with Google"
-RS->Browser: Redirect to Google
+Browser->node-app: Request website
+node-app->Browser: Return index.ejs
+Browser->node-app: Click on "Login with Google"
+node-app->Browser: Redirect to Google
 Browser->Google:
 Google->Browser: Present login / authorization
 Person->Browser: Enter credentials / authorize
 Browser->Google:
 Google->Browser: redirect to callback with code
-Browser->RS: Get callback
-RS->Browser: return demourlshorten.ejs
+Browser->node-app: Get callback
+node-app->Browser: return demourlshorten.ejs
 Browser->Browser: Get access token in javascript
 Browser->Google: Ajax call to urlshortener API with access token
 Google->Browser: Return shortened URL

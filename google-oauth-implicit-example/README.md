@@ -23,7 +23,6 @@ node app
 * OAuth Client URL generation and field explaination
 ```
 var url = 'https://accounts.google.com/o/oauth2/v2/auth?' +
-               'state=urlshortenapicall&' + // Prevent unsolicited callbacks.
                'scope='+urlShortenScope+'&'+ // Scope corresponds to access requested.
                'redirect_uri='+redirectURI+'&'+ // URI of response sent by google. Must matched a pre-registered redirect_uri.
                'response_type=token&' + // Using the implicit flow the token is returned in the URI fragment
