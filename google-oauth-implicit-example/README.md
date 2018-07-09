@@ -33,7 +33,7 @@ var url = 'https://accounts.google.com/o/oauth2/v2/auth?' +
 See the sequence diagram below to get a better picture of the flow of 
 this application.
 
-![Demo Sequence Diagram](./sequence%20diagram/Sequence%20Diagram%20.png)
+![Demo Sequence Diagram](./sequence%20diagram/sequence_diagram.png)
 
 
 
