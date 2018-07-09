@@ -23,7 +23,7 @@ node app
 See the sequence diagram below to get a better picture of the flow of 
 this application.
 
-![Demo Sequence Diagram](./sequence%20diagram/sequence_diagram.png)
+![Demo Sequence Diagram](./sequence%20diagram/Sequence%20Diagram.png)
 
 
 
